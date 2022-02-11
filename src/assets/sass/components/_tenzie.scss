@@ -1,0 +1,15 @@
+.main {
+	@include flex-row-center;
+	padding: 11rem;
+	width: 100%;
+	background-color: $color-main-background;
+}
+
+.tenzie-container {
+	width: 50rem;
+	height: 50rem;
+	padding: 5rem;
+	background-color: $color-game-background;
+	@include shadow;
+	@include border-radius;
+}
