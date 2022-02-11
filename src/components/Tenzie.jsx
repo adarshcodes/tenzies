@@ -3,22 +3,30 @@ import Dice from "./Dice";
 import { nanoid } from "nanoid";
 
 function Tenzie() {
+	const [randomDice, setRandomDice] = React.useState(allNewDice());
+
 	function allNewDice() {
 		const newDice = [];
 		for (let i = 0; i < 10; i++) {
-			newDice.push({
-				value: Math.ceil(Math.random() * 6),
-				isHeld: false,
-				id: nanoid(),
-			});
+			newDice.push(dieGenerator());
 		}
 		return newDice;
 	}
 
-	const [randomDice, setRandomDice] = React.useState(allNewDice());
+	function dieGenerator() {
+		return {
+			value: Math.ceil(Math.random() * 6),
+			isHeld: false,
+			id: nanoid(),
+		};
+	}
 
 	function rollDice() {
-		setRandomDice(allNewDice());
+		setRandomDice((oldDice) =>
+			oldDice.map((die) => {
+				return die.isHeld ? die : dieGenerator();
+			})
+		);
 	}
 
 	function holdDice(id) {
