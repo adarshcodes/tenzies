@@ -1,11 +1,16 @@
 import React from "react";
 import Dice from "./Dice";
+import { nanoid } from "nanoid";
 
 function Tenzie() {
 	function allNewDice() {
 		const newDice = [];
 		for (let i = 0; i < 10; i++) {
-			newDice.push(Math.ceil(Math.random() * 6));
+			newDice.push({
+				value: Math.ceil(Math.random() * 6),
+				isHeld: false,
+				id: nanoid(),
+			});
 		}
 		return newDice;
 	}
@@ -13,7 +18,7 @@ function Tenzie() {
 	const [randomDice, setRandomDice] = React.useState(allNewDice());
 
 	const dices = randomDice.map((dice) => {
-		return <Dice value={dice} />;
+		return <Dice key={dice.id} value={dice.value} />;
 	});
 
 	function rollDice() {
