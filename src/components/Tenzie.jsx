@@ -17,13 +17,28 @@ function Tenzie() {
 
 	const [randomDice, setRandomDice] = React.useState(allNewDice());
 
-	const dices = randomDice.map((dice) => {
-		return <Dice key={dice.id} value={dice.value} />;
-	});
-
 	function rollDice() {
 		setRandomDice(allNewDice());
 	}
+
+	function holdDice(id) {
+		setRandomDice((prevDice) =>
+			prevDice.map((die) => {
+				return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+			})
+		);
+	}
+
+	const dices = randomDice.map((dice) => {
+		return (
+			<Dice
+				key={dice.id}
+				value={dice.value}
+				isHeld={dice.isHeld}
+				holdDice={() => holdDice(dice.id)}
+			/>
+		);
+	});
 
 	return (
 		<div className="tenzie-container">
