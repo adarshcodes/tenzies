@@ -11,5 +11,64 @@
 	padding: 5rem;
 	background-color: $color-game-background;
 	@include shadow;
+	text-align: center;
 	@include border-radius;
+	@include flex-column-center;
+}
+
+.title {
+	font-size: 2.56rem;
+	color: $color-dark-primary;
+}
+
+.description {
+	font-size: 1.5rem;
+	padding: 1rem 5.5rem;
+	line-height: 2rem;
+	color: $color-light-grey;
+	margin-bottom: 2.3rem;
+}
+
+.dice-container {
+	@include flex-row-center;
+	flex-wrap: wrap;
+}
+
+.dice {
+	@include shadow-2;
+	background-color: $color-white;
+	width: 5rem;
+	height: 5rem;
+	@include flex-row-center;
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin: 1.5rem;
+	@include border-radius-2;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.dice-active {
+	background-color: $color-green;
+	transform: scale(0.9);
+	font-size: 2.8rem;
+	color: $color-white;
+	border-radius: 50%;
+}
+
+.role-btn {
+	margin-top: 4rem;
+	font-size: 2rem;
+	color: $color-white;
+	background-color: $color-blue;
+	padding: 1rem 4rem;
+	@include shadow-2;
+	@include border-radius-2;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.1s;
+
+	&:active {
+		transform: scale(0.9);
+	}
 }
