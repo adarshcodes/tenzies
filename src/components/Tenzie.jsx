@@ -2,6 +2,20 @@ import React from "react";
 import Dice from "./Dice";
 
 function Tenzie() {
+	function allNewDice() {
+		const newDice = [];
+		for (let i = 0; i < 10; i++) {
+			newDice.push(Math.ceil(Math.random() * 6));
+		}
+		return newDice;
+	}
+
+	const [randomDice] = React.useState(allNewDice);
+
+	const dices = randomDice.map((dice) => {
+		return <Dice value={dice} />;
+	});
+
 	return (
 		<div className="tenzie-container">
 			<h1 className="title">Tenzies</h1>
@@ -10,9 +24,7 @@ function Tenzie() {
 				current value between rolls.
 			</p>
 
-			<div className="dice-container">
-				<Dice value="0" />
-			</div>
+			<div className="dice-container">{dices}</div>
 
 			<div className="role-btn">Roll</div>
 		</div>
