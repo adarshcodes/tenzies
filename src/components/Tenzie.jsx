@@ -10,11 +10,15 @@ function Tenzie() {
 		return newDice;
 	}
 
-	const [randomDice] = React.useState(allNewDice);
+	const [randomDice, setRandomDice] = React.useState(allNewDice());
 
 	const dices = randomDice.map((dice) => {
 		return <Dice value={dice} />;
 	});
+
+	function rollDice() {
+		setRandomDice(allNewDice());
+	}
 
 	return (
 		<div className="tenzie-container">
@@ -26,7 +30,9 @@ function Tenzie() {
 
 			<div className="dice-container">{dices}</div>
 
-			<div className="role-btn">Roll</div>
+			<div className="role-btn" onClick={rollDice}>
+				Roll
+			</div>
 		</div>
 	);
 }
