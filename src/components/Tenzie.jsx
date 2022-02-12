@@ -75,7 +75,6 @@ function Tenzie() {
 
 	function bestScore() {
 		setBestCount((prevBest) => (prevBest <= countRoll ? countRoll : bestCount));
-		console.log(countRoll);
 	}
 
 	function rollAndCount() {
@@ -100,7 +99,7 @@ function Tenzie() {
 			</p>
 
 			<div className="count">
-				<div className="last-count">Best Roll: {bestCount}</div>
+				<div className="last-count">Highest Roll: {bestCount}</div>
 				<div className="current-count">Current Roll: {countRoll}</div>
 			</div>
 
