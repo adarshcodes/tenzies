@@ -1,6 +1,7 @@
 import React from "react";
 import Dice from "./Dice";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 
 function Tenzie() {
 	function randomizer() {
@@ -70,6 +71,7 @@ function Tenzie() {
 
 	return (
 		<div className="tenzie-container">
+			{tenzies ? <Confetti className="confetti" /> : null}
 			<h1 className="title">Tenzies</h1>
 			<p className="description">
 				Roll until all dice are the same. Click each die to freeze it at its
@@ -79,7 +81,7 @@ function Tenzie() {
 			<div className="dice-container">{dice}</div>
 
 			<div className="role-btn" onClick={tenzies ? reset : diceRoll}>
-				{tenzies ? "Reset" : "Roll"}
+				{tenzies ? "Play again!" : "Roll"}
 			</div>
 		</div>
 	);
