@@ -9,6 +9,14 @@
 	width: 100%;
 	background-color: $color-main-background;
 	user-select: none;
+
+	@media screen and (max-width: 650px) {
+		padding: 5rem;
+	}
+
+	@media screen and (max-width: 400px) {
+		padding: 5rem 2rem;
+	}
 }
 
 .tenzie-container {
@@ -20,6 +28,14 @@
 	text-align: center;
 	@include border-radius;
 	@include flex-column-center;
+
+	@media screen and (max-width: 550px) {
+		padding: 5rem 3rem;
+	}
+
+	@media screen and (max-width: 400px) {
+		padding: 5rem 2rem;
+	}
 }
 
 .title {
@@ -33,6 +49,10 @@
 	line-height: 2rem;
 	color: $color-light-grey;
 	margin-bottom: 2.3rem;
+
+	@media screen and (max-width: 550px) {
+		padding: 1rem 2rem;
+	}
 }
 
 .dice-container {
