@@ -39,6 +39,19 @@ function Tenzie() {
 
 	const [dices, setDices] = React.useState(diceCreator());
 
+	const [tenzies, setTenzies] = React.useState(false);
+
+	React.useEffect(() => {
+		const allHeld = dices.every((die) => die.isHeld);
+		const firstValue = dices[0].value;
+		const allSame = dices.every((die) => die.value === firstValue);
+
+		if (allHeld && allSame) {
+			setTenzies(true);
+			console.log("You won!");
+		}
+	}, [dices]);
+
 	const dice = dices.map((die) => {
 		return (
 			<Dice
