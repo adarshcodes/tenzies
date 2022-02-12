@@ -29,6 +29,7 @@ body {
   padding: 11rem;
   width: 100%;
   background-color: #0b2434;
+  user-select: none;
 }
 
 .tenzie-container {
