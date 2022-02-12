@@ -38,14 +38,11 @@ function Tenzie() {
 		);
 	}
 
-	function reset() {
-		setTenzies(false);
-		setDices(diceCreator());
-	}
-
 	const [dices, setDices] = React.useState(diceCreator());
 
 	const [tenzies, setTenzies] = React.useState(false);
+
+	const [countRoll, setCountRoll] = React.useState(0);
 
 	React.useEffect(() => {
 		const allHeld = dices.every((die) => die.isHeld);
@@ -69,6 +66,25 @@ function Tenzie() {
 		);
 	});
 
+	// Trancking number of rolls
+
+	function count() {
+		setCountRoll((oldCount) => oldCount + 1);
+	}
+
+	function rollAndCount() {
+		count();
+		diceRoll();
+	}
+
+	function reset() {
+		setTenzies(false);
+		setDices(diceCreator());
+		setCountRoll(0);
+	}
+
+	console.log(countRoll);
+
 	return (
 		<div className="tenzie-container">
 			{tenzies ? <Confetti className="confetti" /> : null}
@@ -80,7 +96,7 @@ function Tenzie() {
 
 			<div className="dice-container">{dice}</div>
 
-			<div className="role-btn" onClick={tenzies ? reset : diceRoll}>
+			<div className="role-btn" onClick={tenzies ? reset : rollAndCount}>
 				{tenzies ? "Play again!" : "Roll"}
 			</div>
 		</div>
