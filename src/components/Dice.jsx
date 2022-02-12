@@ -4,7 +4,7 @@ export default function Dice(props) {
 	return (
 		<div
 			className={props.isHeld ? "dice dice-active" : "dice"}
-			onClick={props.holdDice}
+			onClick={props.diceHold}
 		>
 			{props.value}
 		</div>

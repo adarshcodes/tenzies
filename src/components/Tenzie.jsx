@@ -3,17 +3,7 @@ import Dice from "./Dice";
 import { nanoid } from "nanoid";
 
 function Tenzie() {
-	const [randomDice, setRandomDice] = React.useState(allNewDice());
-
-	function allNewDice() {
-		const newDice = [];
-		for (let i = 0; i < 10; i++) {
-			newDice.push(dieGenerator());
-		}
-		return newDice;
-	}
-
-	function dieGenerator() {
+	function randomizer() {
 		return {
 			value: Math.ceil(Math.random() * 6),
 			isHeld: false,
@@ -21,29 +11,41 @@ function Tenzie() {
 		};
 	}
 
-	function rollDice() {
-		setRandomDice((oldDice) =>
-			oldDice.map((die) => {
-				return die.isHeld ? die : dieGenerator();
-			})
-		);
+	function diceCreator() {
+		const newDice = [];
+
+		for (let i = 0; i < 10; i++) {
+			newDice.push(randomizer());
+		}
+
+		return newDice;
 	}
 
-	function holdDice(id) {
-		setRandomDice((prevDice) =>
-			prevDice.map((die) => {
+	function diceHold(id) {
+		setDices((oldDice) =>
+			oldDice.map((die) => {
 				return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
 			})
 		);
 	}
 
-	const dices = randomDice.map((dice) => {
+	function diceRoll() {
+		setDices((oldDice) =>
+			oldDice.map((die) => {
+				return die.isHeld ? die : randomizer();
+			})
+		);
+	}
+
+	const [dices, setDices] = React.useState(diceCreator());
+
+	const dice = dices.map((die) => {
 		return (
 			<Dice
-				key={dice.id}
-				value={dice.value}
-				isHeld={dice.isHeld}
-				holdDice={() => holdDice(dice.id)}
+				key={die.id}
+				value={die.value}
+				isHeld={die.isHeld}
+				diceHold={() => diceHold(die.id)}
 			/>
 		);
 	});
@@ -56,9 +58,9 @@ function Tenzie() {
 				current value between rolls.
 			</p>
 
-			<div className="dice-container">{dices}</div>
+			<div className="dice-container">{dice}</div>
 
-			<div className="role-btn" onClick={rollDice}>
+			<div className="role-btn" onClick={diceRoll}>
 				Roll
 			</div>
 		</div>
