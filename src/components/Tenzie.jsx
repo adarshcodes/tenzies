@@ -37,6 +37,11 @@ function Tenzie() {
 		);
 	}
 
+	function reset() {
+		setTenzies(false);
+		setDices(diceCreator());
+	}
+
 	const [dices, setDices] = React.useState(diceCreator());
 
 	const [tenzies, setTenzies] = React.useState(false);
@@ -73,8 +78,8 @@ function Tenzie() {
 
 			<div className="dice-container">{dice}</div>
 
-			<div className="role-btn" onClick={diceRoll}>
-				Roll
+			<div className="role-btn" onClick={tenzies ? reset : diceRoll}>
+				{tenzies ? "Reset" : "Roll"}
 			</div>
 		</div>
 	);
