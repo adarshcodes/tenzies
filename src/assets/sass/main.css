@@ -111,4 +111,22 @@ body {
 .role-btn:active {
   transform: scale(0.9);
 }
+
+.count {
+  width: 100%;
+  padding: 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count .current-count {
+  color: #fa7161;
+}
+
+.count .last-count {
+  color: #16c58d;
+}
 /*# sourceMappingURL=main.css.map */

@@ -42,8 +42,6 @@ function Tenzie() {
 
 	const [tenzies, setTenzies] = React.useState(false);
 
-	const [countRoll, setCountRoll] = React.useState(0);
-
 	React.useEffect(() => {
 		const allHeld = dices.every((die) => die.isHeld);
 		const firstValue = dices[0].value;
@@ -51,7 +49,6 @@ function Tenzie() {
 
 		if (allHeld && allSame) {
 			setTenzies(true);
-			console.log("You won!");
 		}
 	}, [dices]);
 
@@ -66,10 +63,19 @@ function Tenzie() {
 		);
 	});
 
-	// Trancking number of rolls
+	// Tracking number of rolls
+
+	const [countRoll, setCountRoll] = React.useState(0);
+
+	const [bestCount, setBestCount] = React.useState(0);
 
 	function count() {
 		setCountRoll((oldCount) => oldCount + 1);
+	}
+
+	function bestScore() {
+		setBestCount((prevBest) => (prevBest <= countRoll ? countRoll : bestCount));
+		console.log(countRoll);
 	}
 
 	function rollAndCount() {
@@ -78,12 +84,11 @@ function Tenzie() {
 	}
 
 	function reset() {
+		bestScore();
 		setTenzies(false);
 		setDices(diceCreator());
 		setCountRoll(0);
 	}
-
-	console.log(countRoll);
 
 	return (
 		<div className="tenzie-container">
@@ -93,6 +98,11 @@ function Tenzie() {
 				Roll until all dice are the same. Click each die to freeze it at its
 				current value between rolls.
 			</p>
+
+			<div className="count">
+				<div className="last-count">Best Roll: {bestCount}</div>
+				<div className="current-count">Current Roll: {countRoll}</div>
+			</div>
 
 			<div className="dice-container">{dice}</div>
 

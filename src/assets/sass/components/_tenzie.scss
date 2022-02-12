@@ -78,3 +78,19 @@
 		transform: scale(0.9);
 	}
 }
+
+.count {
+	width: 100%;
+	padding: 2rem;
+	font-size: 1.8rem;
+	font-weight: 500;
+	@include flex-row-space-between;
+
+	.current-count {
+		color: #fa7161;
+	}
+
+	.last-count {
+		color: #16c58d;
+	}
+}
